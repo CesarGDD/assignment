@@ -1,0 +1,43 @@
+
+<div class=" flex flex-col mt-9 items-center text-center">
+  <div class=" w-4/5">
+    <table class=" w-full bg-slate-200">
+      <tr class=" text-xl bg-slate-300 ">
+        <th class="" >Number Plate</th>
+        <th>Type</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Colour</th>
+        <th>Name</th>
+        <th>Code</th>
+      </tr>
+      
+      <h1 *ngIf="!registrations || registrations.length == 0" >No registrations yet</h1>
+      <tr class=" border-b-2 border-gray-300" *ngFor="let reg of registrations">
+        <td>{{reg.number_plate}}</td>
+        <td>{{reg.vehicle.type}}</td>
+        <td>{{reg.vehicle.make}}</td>
+        <td>{{reg.vehicle.model}}</td>
+        <td>{{reg.vehicle.colour}}</td>
+        <td>{{reg.insurer.name}}</td>
+        <td>{{reg.insurer.code}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class=" mt-2" >
+    <h1 class=" m-2">Create Registration</h1>
+    <form class="flex flex-col space-y-2 text-center " #registrationForm="ngForm" (ngSubmit)="createRegistration(registrationForm)"
+      >
+      <input type="text" ngModel required="true" name="number_plate" placeholder="number_plate">
+      <input type="text" ngModel required="true" name="type" placeholder="type">
+      <input type="text" ngModel required="true" name="make" placeholder="make">
+      <input type="text" ngModel required="true" name="model" placeholder="model">
+      <input type="text" ngModel required="true" name="colour" placeholder="colour">
+      <input type="text" ngModel required="true" name="name" placeholder="insurer_name">
+      <input type="number" ngModel required="true" name="code" placeholder="insurer_code">
+      <button class=" rounded-lg text-white bg-green-500" >Create</button>
+    </form>
+  </div>
+
+</div>
