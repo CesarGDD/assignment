@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package rgpb;
+
+option go_package = "/rgpb";
+
+
+message Vehicle {
+    string type = 1;
+    string make = 2;
+    string model = 3;
+    string colour = 4;
+}
+
+message Insurer {
+    string name = 1;
+    int32 code = 2;
+}
+
+message Registration {
+    string number_plate = 1;
+    Vehicle vehicle = 2;
+    Insurer insurer = 3;
+}
+
+message CreateRegistrationRequest {
+    Registration registration = 1;
+}
+
+message CreateRegistrationResponse {
+    Registration registration = 1;
+}
+
+message GetRegistrarionRequest {
+    string number_plate = 1;
+}
+
+message GetRegistrationResponse {
+    Registration registration = 1;
+}
+
+
+message ListRegistrationRequest {
+
+}
+
+message ListRegistrationResponse {
+    repeated Registration registration = 1;
+}
+
+
+service RegistrationService {
+    rpc CreateRegistration(CreateRegistrationRequest) returns (CreateRegistrationResponse);
+    rpc GetRegistrarion(GetRegistrarionRequest) returns (GetRegistrationResponse);
+    rpc ListRegistration(ListRegistrationRequest) returns (ListRegistrationResponse);
+}
